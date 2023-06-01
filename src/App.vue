@@ -1,31 +1,29 @@
 <template>
-  <!-- <div>
-    <div>
-      <button @click='addLike'>Like</button>
-      <button @click='addDislike'>Dislike</button>
-    </div>
-    <div>Count likes: <strong>{{ likes }}</strong></div>
-    <div>Count dislikes: <strong>{{ dislikes }}</strong></div>
-  </div> -->
-
   <div class="app">
     <h1>Page with posts</h1>
-    <my-button
+    <div class="app__btns">
+      <my-button
       @click="showDialog"
       style="margin: 15px 0;"
       >Create post
     </my-button>
+    <my-select 
+      v-model="selectedSort"
+      :options="sortOptions"
+    />
+    </div>
     <my-dialog v-model:show="dialogVisible">
       <post-form 
-      @create="createPost" 
+        @create="createPost" 
       />
     </my-dialog>
 
     <post-list 
       :posts="posts"
       @remove="removePost"
+      v-if="!isPostsLoading"
     />
-
+    <div v-else>Loading...</div>
   </div>
 </template>
 
@@ -35,24 +33,28 @@
 import PostForm from './components/PostForm.vue';
 import PostList from './components/PostList.vue';
 import MyDialog from './components/UI/MyDialog.vue';
+import MySelect from './components/UI/MySelect.vue';
+import axios from 'axios';
 
 export default {
   components: {
     PostList,
     PostForm,
-    MyDialog
+    MyDialog,
+    MySelect
   },
   data() {
     return {
       likes: 0,
       dislikes: 0,
-      posts: [
-        {id: 1, title: "Javascript", body: "description JS"},
-        {id: 2, title: "PHP", body: "description PHP"},
-        {id: 3, title: "Vue", body: "description Vue"},
-        {id: 4, title: "React", body: "description React"},
-      ],
-      dialogVisible: false
+      posts: [],
+      dialogVisible: false,
+      isPostsLoading: false,
+      selectedSort: '',
+      sortOptions: [
+        {value: 'title', name: 'By name'},
+        {value: 'body', name: 'By description'}
+      ]
     }
   }, 
   methods: {
@@ -71,8 +73,29 @@ export default {
     },
     showDialog() {
       this.dialogVisible = true;
+    },
+    async fetchPosts() {
+      try {
+         setTimeout( async () =>{
+          const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+          this.posts = response.data;
+        }, 1000)
+      } catch (e) {
+        alert("Error fetching users");
+      }
+    },
+  },
+  mounted() {
+      this.fetchPosts();
+    },
+    watch: {
+      selectedSort(newValue) {
+        console.log(newValue);
+        this.posts.sort((post1, post2) => {
+          return post1[newValue]?.localeCompare(post2[newValue])
+        })
+      }
     }
-  }
 }
 
 </script>
@@ -93,32 +116,10 @@ export default {
   box-shadow: -10px 0px 13px -7px #000000, 10px 0px 13px -7px #000000, 5px 5px 15px 5px rgba(0,0,0,0);
 }
 
-/* .post {
-  padding: 15px;
-  margin: 5px 10px;
-  border: 3px solid teal;
-} */
-/* 
-form {
-  display: flex;
-  flex-direction: column;
-
-}
-
-.input {
-  width: 100%;
-  border: 1px solid teal;
-  padding: 10px 15px;
-  margin-top:15px;
-}
-
-.btn {
+.app__btns{
   margin: 15px 0;
-  align-self: flex-end;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-  cursor: pointer;
-} */
+  display: flex;
+  justify-content: space-between;
+
+}
 </style>
