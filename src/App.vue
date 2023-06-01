@@ -9,10 +9,18 @@
   </div> -->
 
   <div class="app">
-    
-    <post-form 
+    <h1>Page with posts</h1>
+    <my-button
+      @click="showDialog"
+      style="margin: 15px 0;"
+      >Create post
+    </my-button>
+    <my-dialog v-model:show="dialogVisible">
+      <post-form 
       @create="createPost" 
       />
+    </my-dialog>
+
     <post-list 
       :posts="posts"
       @remove="removePost"
@@ -26,23 +34,25 @@
 <script>
 import PostForm from './components/PostForm.vue';
 import PostList from './components/PostList.vue';
+import MyDialog from './components/UI/MyDialog.vue';
 
 export default {
   components: {
     PostList,
-    PostForm
+    PostForm,
+    MyDialog
   },
   data() {
     return {
       likes: 0,
       dislikes: 0,
-      
       posts: [
         {id: 1, title: "Javascript", body: "description JS"},
         {id: 2, title: "PHP", body: "description PHP"},
         {id: 3, title: "Vue", body: "description Vue"},
         {id: 4, title: "React", body: "description React"},
       ],
+      dialogVisible: false
     }
   }, 
   methods: {
@@ -54,9 +64,13 @@ export default {
     },
     createPost(post) {
       this.posts.push(post);
+      this.dialogVisible = false;
     },
     removePost(post) {
       this.posts = this.posts.filter(p => p.id !== post.id)
+    },
+    showDialog() {
+      this.dialogVisible = true;
     }
   }
 }
