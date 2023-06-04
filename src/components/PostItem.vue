@@ -1,6 +1,7 @@
 <template>
    <div class="post">
     <div>
+        <div><strong>Id: </strong>{{ post.id }}</div>
         <div><strong>Name: </strong>{{ post.title }}</div>
         <div><strong>Description: </strong>{{ post.body }}</div>
     </div>
@@ -11,13 +12,11 @@
         </my-button> 
     </div>
     </div>   
- </template>
+</template>
  
- <script>
-//  import MyButton from './UI/MyButton.vue';
- export default {
+<script>
+export default {
     components: {
-        // MyButton
     },
      props: {
         post: {
@@ -38,13 +37,4 @@
     justify-content: space-between;
 }
 
-/* .btn {
-  margin: 15px 0;
-  align-self: flex-end;
-  padding: 10px 15px;
-  background: none;
-  color: teal;
-  border: 1px solid teal;
-  cursor: pointer;
-}  */
  </style>
