@@ -5,7 +5,12 @@
         <div><strong>Name: </strong>{{ post.title }}</div>
         <div><strong>Description: </strong>{{ post.body }}</div>
     </div>
+    
     <div class="post__btns">
+        <my-button
+            @click="$router.push(`/posts/${post.id}`)"
+            >Open
+        </my-button> 
         <my-button
             @click="$emit('remove', post)"
             >Delete
@@ -35,6 +40,10 @@ export default {
     margin: 5px 10px;
     border: 3px solid teal;
     justify-content: space-between;
+}
+.post__btns {
+    display: flex;
+
 }
 
  </style>
