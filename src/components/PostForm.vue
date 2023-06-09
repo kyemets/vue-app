@@ -2,6 +2,7 @@
      <form @submit.prevent>
       <h4>Add post</h4>
       <my-input
+        v-focus
         v-model="post.title"
         type="text" 
         placeholder="Name"
@@ -20,27 +21,25 @@
 </template>
 
 <script>
-// import MyButton from './UI/MyButton.vue'
 export default {
     components: {
-        // MyButton
     },
     data() {
         return {
-            post: {
-                title: '',
-                body: '',
-            }
+          post: {
+              title: '',
+              body: '',
+          }
         }
     },
     methods: {
       createPost() {
-            this.post.id = Date.now()
-            this.$emit('create', this.post)
-            this.post = {
-                title: '',
-                body: '',
-            }
+        this.post.id = Date.now()
+        this.$emit('create', this.post)
+        this.post = {
+          title: '',
+          body: '',
+        }
       },
     },
 }
@@ -51,10 +50,7 @@ export default {
 form {
   display: flex;
   flex-direction: column;
-
 }
-
-
 .btn {
   margin: 15px 0;
   align-self: flex-end;

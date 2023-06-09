@@ -4,6 +4,7 @@
       <my-input 
         v-model="searchQuery"
         placeholder="Search..."
+        v-focus
       />
       <div class="app__btns">
         <my-button
@@ -28,7 +29,7 @@
         v-if="!isPostsLoading"
       />
       <div v-else>Loading...</div>
-      <div ref="observer" class="observer"></div>
+      <div v-intersection="loadMorePosts" class="observer"></div>
       
       <!-- <div class="page__wrapper">
         <div 
@@ -142,18 +143,6 @@
     mounted() {
         this.fetchPosts();  
         console.log(this.$refs.observer)
-        
-        const options = {
-          rootMargin: '0px',
-          threshold: 1.0
-        }
-        const callback = (entries, observer) => {
-          if (entries[0].isIntersecting && this.page < this.totalPages) {
-            this.loadMorePosts()
-          }
-        }
-        const observer = new IntersectionObserver(callback, options)
-        observer.observe(this.$refs.observer)
       },
       computed: {
         sortedPosts() {
@@ -173,27 +162,25 @@
 </script>
   
 <style>
-
-  
 .app__btns{
-    margin: 15px 0;
-    display: flex;
-    justify-content: space-between;
+  margin: 15px 0;
+  display: flex;
+  justify-content: space-between;
 }
   
 .page__wrapper{
-    display: flex;
-    margin-top: 15px;
+  display: flex;
+  margin-top: 15px;
 }
   
 .page {
-    border: 1px solid #000;
-    padding: 10px;
-    cursor: pointer;
+  border: 1px solid #000;
+  padding: 10px;
+  cursor: pointer;
 }
   
 .current-page {
-    border: 3px solid teal;
+  border: 3px solid teal;
 }
   
 .observer {

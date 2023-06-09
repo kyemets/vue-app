@@ -1,21 +1,20 @@
 <template>
-   <div class="post">
-    <div>
-        <div><strong>Id: </strong>{{ post.id }}</div>
-        <div><strong>Name: </strong>{{ post.title }}</div>
-        <div><strong>Description: </strong>{{ post.body }}</div>
-    </div>
-    
-    <div class="post__btns">
-        <my-button
-            @click="$router.push(`/posts/${post.id}`)"
-            >Open
-        </my-button> 
-        <my-button
-            @click="$emit('remove', post)"
-            >Delete
-        </my-button> 
-    </div>
+    <div class="post">
+        <div>
+            <div><strong>Id: </strong>{{ post.id }}</div>
+            <div><strong>Name: </strong>{{ post.title }}</div>
+            <div><strong>Description: </strong>{{ post.body }}</div>
+        </div>
+        <div class="post__btns">
+            <my-button
+                @click="$router.push(`/posts/${post.id}`)"
+                >Open
+            </my-button> 
+            <my-button
+                @click="$emit('remove', post)"
+                >Delete
+            </my-button> 
+        </div>
     </div>   
 </template>
  
@@ -28,9 +27,9 @@ export default {
             type: Array,
             required: true,
         }
-     }
- }
- </script>
+    }
+}
+</script>
  
  <style scoped>
 .post {
@@ -43,7 +42,6 @@ export default {
 }
 .post__btns {
     display: flex;
-
 }
 
  </style>
