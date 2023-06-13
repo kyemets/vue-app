@@ -1,14 +1,11 @@
 import { createStore } from 'vuex'
+import { postModule } from './postModule'
 
 export default createStore({
   state: {
-  },
-  getters: {
-  },
-  mutations: {
-  },
-  actions: {
+    isAuth: false
   },
   modules: {
+    post: postModule
   }
 })

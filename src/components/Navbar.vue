@@ -15,6 +15,11 @@
                 style='margin-left: 20px;'
                 >About app
             </my-button>
+            <my-button
+                @click="$router.push('/store')"
+                style='margin-left: 20px;'
+                >Store
+            </my-button>
         </div>
     </div>
 </template>

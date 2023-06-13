@@ -18,4 +18,5 @@ directives.forEach(directive => {
 
 app
     .use(router)
+    .use(store)
     .mount('#app')
