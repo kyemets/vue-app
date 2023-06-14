@@ -17,6 +17,7 @@ export default {
   background: none;
   color: teal;
   border: 1px solid teal;
+  border-radius: 2px;
   cursor: pointer;
 }
 </style>

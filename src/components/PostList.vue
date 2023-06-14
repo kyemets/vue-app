@@ -10,7 +10,7 @@
     />
     </transition-group>
   </div>
-  <h2 v-else style="color: red">
+  <h2 v-else style="color: white">
     List of posts is empty!
   </h2>
 </template>
@@ -22,9 +22,9 @@ export default {
         PostItem
     },
     props: {
-        posts: {
-            type: Array,
-            required: true,
+      posts: {
+        type: Array,
+          required: true,
         }
     }
 }

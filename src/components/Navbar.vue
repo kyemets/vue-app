@@ -20,6 +20,11 @@
                 style='margin-left: 20px;'
                 >Store
             </my-button>
+            <my-button
+                @click="$router.push('/composition')"
+                style='margin-left: 20px;'
+                >Composition API
+            </my-button>
         </div>
     </div>
 </template>
@@ -34,16 +39,19 @@ export default {
 .navbar {
     display: flex;
     align-items: center;
+    position: -webkit-sticky;
+    position: sticky;    
+    top: 0;
     height: 50px;
-    background: lightgray;
+    background: rgba(0,0,0,4);
     padding: 0 15px;
-    box-shadow: 2px 2px 4px gray;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
 }
 .navbar__btns {
     margin-left: auto;
 }
-
 .logo {
     cursor: pointer;
+    font-size: 24px;
 }
 </style>

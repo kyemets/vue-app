@@ -33,9 +33,12 @@ export default {
 .dialog__content{
     margin: auto;
     background: #fff;
-    border-radius: 12px;
-    min-height: 50px;
-    min-width: 350px;
+    background: rgba(0,0,0,1);
+    min-height: 80px;
+    min-width: 450px;
     padding: 20px;
+    font-size: 24px;
+    border: 1px solid rgb(186, 215, 18);
+    border-radius: 12px;
 }
 </style>

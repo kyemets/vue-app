@@ -3,7 +3,7 @@
       <h1>
         {{ $store.state.isAuth 
           ? "The user is authorized" 
-          : "Please authorize" }}
+          : "Please authorize!" }}
       </h1>
 
       <h1>Page with store</h1>
@@ -143,6 +143,6 @@ export default {
 }
 .observer {
   height: 30px;
-  background: green;
+  background: teal;
 }
 </style>

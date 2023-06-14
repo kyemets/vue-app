@@ -31,7 +31,7 @@
       <div v-else>Loading...</div>
       <div v-intersection="loadMorePosts" class="observer"></div>
       
-      <!-- <div class="page__wrapper">
+      <div class="page__wrapper">
         <div 
           v-for="pageNumber in totalPages" 
           :key="pageNumber"
@@ -43,41 +43,39 @@
           >
           {{ pageNumber }}
         </div>
-      </div> -->
+      </div>
     </div>
 </template>
+    
+<script>
+import PostForm from '../components/PostForm.vue';
+import PostList from '../components/PostList.vue';
+import MyDialog from '../components/UI/MyDialog.vue';
+import MySelect from '../components/UI/MySelect.vue';
+import axios from 'axios';
   
-  
-  
-  <script>
-  import PostForm from '../components/PostForm.vue';
-  import PostList from '../components/PostList.vue';
-  import MyDialog from '../components/UI/MyDialog.vue';
-  import MySelect from '../components/UI/MySelect.vue';
-  import axios from 'axios';
-  
-  export default {
-    components: {
-      PostList,
-      PostForm,
-      MyDialog,
-      MySelect
-    },
-    data() {
-      return {
-        likes: 0,
-        dislikes: 0,
-        posts: [],
-        dialogVisible: false,
-        isPostsLoading: false,
-        selectedSort: '',
-        searchQuery: '',
-        page: 1,
-        limit: 10,
-        totalPages: 0,
-        sortOptions: [
-          {value: 'title', name: 'By name'},
-          {value: 'body', name: 'By description'}
+export default {
+  components: {
+    PostList,
+    PostForm,
+    MyDialog,
+    MySelect
+  },
+  data() {
+    return {
+      likes: 0,
+      dislikes: 0,
+      posts: [],
+      dialogVisible: false,
+      isPostsLoading: false,
+      selectedSort: '',
+      searchQuery: '',
+      page: 1,
+      limit: 10,
+      totalPages: 0,
+      sortOptions: [
+        {value: 'title', name: 'By name'},
+        {value: 'body', name: 'By description'}
         ]
       }
     }, 
@@ -98,9 +96,9 @@
       showDialog() {
         this.dialogVisible = true;
       },
-      // changePage(pageNumber) {
-      //   this.page = pageNumber;
-      // },
+      changePage(pageNumber) {
+        this.page = pageNumber;
+      },
       async fetchPosts() {
         try {
            setTimeout( async () =>{
@@ -184,7 +182,7 @@
 }
   
 .observer {
-    height: 30px;
-    background: green;
+  height: 30px;
+  background: teal;
 }
 </style>

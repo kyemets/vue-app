@@ -21,6 +21,9 @@ export default {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background: rgba(0,0,0,4);
+  color: #fff
+
 }
   
 .app {

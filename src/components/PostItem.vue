@@ -36,12 +36,15 @@ export default {
     display: flex;
     align-items: center;
     padding: 15px;
-    margin: 5px 10px;
-    border: 3px solid teal;
+    margin: 10px;
+    border: 1px solid rgb(186, 215, 18);
+    border-radius: 6px;
     justify-content: space-between;
+    font-size: 16px;
 }
 .post__btns {
     display: flex;
+    justify-content: space-between;
 }
 
  </style>
